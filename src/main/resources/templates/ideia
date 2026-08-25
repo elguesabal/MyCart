@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MyCart — Sua lista de compras</title>
+
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+
+<body class="min-h-screen bg-[#f7f8f5] text-[#1f2933]">
+
+    <!-- NAVBAR -->
+    <header class="mx-auto max-w-6xl px-6 py-6">
+
+        <nav class="flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-3">
+
+                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#dff3df] text-xl">
+                    🛒
+                </div>
+
+                <span class="text-xl font-bold">
+                    MyCart
+                </span>
+
+            </a>
+
+
+            <!-- Navigation -->
+            <div class="hidden items-center gap-8 text-sm font-medium text-gray-500 md:flex">
+
+                <a href="#vantagens" class="transition hover:text-gray-900">
+                    Vantagens
+                </a>
+
+                <a href="#como-funciona" class="transition hover:text-gray-900">
+                    Como funciona
+                </a>
+
+            </div>
+
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+
+                <a href="/login"
+                   class="hidden rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-600 transition hover:bg-white hover:text-gray-900 sm:block">
+                    Entrar
+                </a>
+
+                <a href="/cadastro"
+                   class="rounded-xl bg-[#243b2a] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1b2e20]">
+                    Criar conta
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="mx-auto max-w-6xl px-6 pb-24 pt-16 md:pb-32 md:pt-24">
+
+            <div class="grid items-center gap-16 lg:grid-cols-2">
+
+
+                <!-- TEXT -->
+                <div>
+
+                    <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-[#e8f4e8] px-4 py-2 text-sm font-medium text-[#47704e]">
+
+                        <span>✨</span>
+
+                        Organize suas compras de um jeito simples
+
+                    </div>
+
+
+                    <h1 class="max-w-xl text-5xl font-black leading-[1.05] tracking-tight text-[#243b2a] md:text-6xl">
+
+                        Vá ao mercado
+                        <span class="text-[#5a9b61]">
+                            sem esquecer nada.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="mt-6 max-w-lg text-lg leading-8 text-gray-500">
+
+                        Crie sua lista, adicione os produtos que precisa
+                        e marque cada item conforme coloca no carrinho.
+
+                        <span class="font-medium text-gray-700">
+                            É simples assim.
+                        </span>
+
+                    </p>
+
+
+                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+
+                        <a href="/cadastro"
+                           class="rounded-2xl bg-[#243b2a] px-7 py-4 text-center font-bold text-white shadow-lg shadow-[#243b2a]/10 transition hover:-translate-y-0.5 hover:bg-[#1b2e20]">
+
+                            Criar minha primeira lista
+
+                        </a>
+
+
+                        <a href="#como-funciona"
+                           class="rounded-2xl bg-white px-7 py-4 text-center font-bold text-gray-700 shadow-sm ring-1 ring-gray-200 transition hover:bg-gray-50">
+
+                            Ver como funciona
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- Trust -->
+                    <div class="mt-8 flex items-center gap-3 text-sm text-gray-400">
+
+                        <div class="flex -space-x-2">
+
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#f7f8f5] bg-[#dcebdc]">
+                                👩
+                            </div>
+
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#f7f8f5] bg-[#eee0d0]">
+                                👨
+                            </div>
+
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#f7f8f5] bg-[#dedff0]">
+                                👩
+                            </div>
+
+                        </div>
+
+                        <span>
+                            Feito para facilitar sua rotina
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIST CARD -->
+                <div class="relative">
+
+
+                    <!-- Decorative circles -->
+                    <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#dcebdc]"></div>
+
+                    <div class="absolute -bottom-10 -left-10 h-24 w-24 rounded-full bg-[#f0e3d1]"></div>
+
+
+                    <!-- Main card -->
+                    <div class="relative rounded-[2rem] bg-white p-6 shadow-xl shadow-gray-200/60 ring-1 ring-gray-100 md:p-8">
+
+
+                        <!-- Header -->
+                        <div class="flex items-center justify-between">
+
+                            <div>
+
+                                <p class="text-sm font-medium text-gray-400">
+                                    LISTA DE COMPRAS
+                                </p>
+
+                                <h2 class="mt-1 text-2xl font-bold text-[#243b2a]">
+                                    Mercado 🛒
+                                </h2>
+
+                            </div>
+
+
+                            <button class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#e8f4e8] text-lg text-[#47704e] transition hover:bg-[#dcebdc]">
+                                +
+                            </button>
+
+                        </div>
+
+
+                        <!-- Date -->
+                        <div class="mt-6 flex items-center justify-between rounded-xl bg-[#f7f8f5] px-4 py-3">
+
+                            <span class="text-sm text-gray-500">
+                                Compras desta semana
+                            </span>
+
+                            <span class="text-sm font-semibold text-[#47704e]">
+                                5 itens
+                            </span>
+
+                        </div>
+
+
+                        <!-- Items -->
+                        <div class="mt-5 space-y-2">
+
+
+                            <!-- Checked -->
+                            <div class="flex items-center gap-4 rounded-2xl p-4 transition hover:bg-gray-50">
+
+                                <div class="flex h-6 w-6 items-center justify-center rounded-lg bg-[#6baa72] text-xs font-bold text-white">
+                                    ✓
+                                </div>
+
+                                <div class="flex-1">
+
+                                    <p class="font-medium text-gray-400 line-through">
+                                        Arroz
+                                    </p>
+
+                                    <p class="text-xs text-gray-400">
+                                        2 kg
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Item -->
+                            <div class="flex items-center gap-4 rounded-2xl bg-[#fafbf9] p-4">
+
+                                <div class="h-6 w-6 rounded-lg border-2 border-gray-200"></div>
+
+                                <div class="flex-1">
+
+                                    <p class="font-semibold">
+                                        Leite
+                                    </p>
+
+                                    <p class="text-xs text-gray-400">
+                                        3 unidades
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Item -->
+                            <div class="flex items-center gap-4 rounded-2xl bg-[#fafbf9] p-4">
+
+                                <div class="h-6 w-6 rounded-lg border-2 border-gray-200"></div>
+
+                                <div class="flex-1">
+
+                                    <p class="font-semibold">
+                                        Pão
+                                    </p>
+
+                                    <p class="text-xs text-gray-400">
+                                        1 pacote
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Item -->
+                            <div class="flex items-center gap-4 rounded-2xl bg-[#fafbf9] p-4">
+
+                                <div class="h-6 w-6 rounded-lg border-2 border-gray-200"></div>
+
+                                <div class="flex-1">
+
+                                    <p class="font-semibold">
+                                        Ovos
+                                    </p>
+
+                                    <p class="text-xs text-gray-400">
+                                        12 unidades
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Item -->
+                            <div class="flex items-center gap-4 rounded-2xl bg-[#fafbf9] p-4">
+
+                                <div class="h-6 w-6 rounded-lg border-2 border-gray-200"></div>
+
+                                <div class="flex-1">
+
+                                    <p class="font-semibold">
+                                        Café
+                                    </p>
+
+                                    <p class="text-xs text-gray-400">
+                                        500 g
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Bottom -->
+                        <div class="mt-5 border-t border-gray-100 pt-5">
+
+                            <div class="flex items-center justify-between">
+
+                                <span class="text-sm text-gray-400">
+                                    1 de 5 produtos
+                                </span>
+
+                                <span class="text-sm font-bold text-[#5a9b61]">
+                                    20%
+                                </span>
+
+                            </div>
+
+                            <div class="mt-3 h-2 overflow-hidden rounded-full bg-[#edf0eb]">
+
+                                <div class="h-full w-1/5 rounded-full bg-[#6baa72]"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SIMPLE MESSAGE -->
+        <section class="border-y border-[#e9ebe6] bg-white">
+
+            <div class="mx-auto max-w-6xl px-6 py-20">
+
+                <div class="mx-auto max-w-3xl text-center">
+
+                    <span class="text-4xl">
+                        💭
+                    </span>
+
+                    <h2 class="mt-5 text-3xl font-black tracking-tight text-[#243b2a] md:text-4xl">
+
+                        "O que eu precisava mesmo era..."
+
+                    </h2>
+
+                    <p class="mt-4 text-lg leading-8 text-gray-500">
+
+                        Quantas vezes você já chegou no supermercado
+                        e percebeu que esqueceu alguma coisa?
+
+                    </p>
+
+                    <p class="mt-2 font-semibold text-[#5a9b61]">
+
+                        O MyCart existe para isso.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section id="vantagens">
+
+            <div class="mx-auto max-w-6xl px-6 py-24">
+
+                <div class="text-center">
+
+                    <p class="text-sm font-bold uppercase tracking-widest text-[#6baa72]">
+                        Por que MyCart?
+                    </p>
+
+                    <h2 class="mt-3 text-4xl font-black tracking-tight text-[#243b2a]">
+                        Menos preocupação.
+                        Mais organização.
+                    </h2>
+
+                </div>
+
+
+                <div class="mt-14 grid gap-6 md:grid-cols-3">
+
+
+                    <!-- Feature -->
+                    <div class="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-gray-100">
+
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e8f4e8] text-2xl">
+                            📝
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-[#243b2a]">
+                            Crie listas
+                        </h3>
+
+                        <p class="mt-3 leading-7 text-gray-500">
+                            Monte uma lista para cada ocasião.
+                            Mercado, feira, churrasco ou qualquer compra.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Feature -->
+                    <div class="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-gray-100">
+
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f6eadc] text-2xl">
+                            🛒
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-[#243b2a]">
+                            Compre sem esquecer
+                        </h3>
+
+                        <p class="mt-3 leading-7 text-gray-500">
+                            Veja exatamente o que falta e marque
+                            cada produto conforme compra.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Feature -->
+                    <div class="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-gray-100">
+
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e5e7f2] text-2xl">
+                            ☁️
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-[#243b2a]">
+                            Não perca suas listas
+                        </h3>
+
+                        <p class="mt-3 leading-7 text-gray-500">
+                            Suas listas ficam associadas à sua conta
+                            e podem ser acessadas novamente.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+        <section id="como-funciona" class="bg-[#243b2a]">
+
+            <div class="mx-auto max-w-6xl px-6 py-24">
+
+                <div class="max-w-2xl">
+
+                    <p class="text-sm font-bold uppercase tracking-widest text-[#9bd49f]">
+                        Como funciona
+                    </p>
+
+                    <h2 class="mt-4 text-4xl font-black tracking-tight text-white md:text-5xl">
+                        Três passos.
+                        Uma compra muito mais tranquila.
+                    </h2>
+
+                </div>
+
+
+                <div class="mt-14 grid gap-8 md:grid-cols-3">
+
+
+                    <div>
+
+                        <span class="text-5xl font-black text-[#6baa72]">
+                            01
+                        </span>
+
+                        <h3 class="mt-6 text-xl font-bold text-white">
+                            Crie sua lista
+                        </h3>
+
+                        <p class="mt-3 leading-7 text-gray-300">
+                            Adicione tudo que você precisa comprar.
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="text-5xl font-black text-[#6baa72]">
+                            02
+                        </span>
+
+                        <h3 class="mt-6 text-xl font-bold text-white">
+                            Vá às compras
+                        </h3>
+
+                        <p class="mt-3 leading-7 text-gray-300">
+                            Abra sua lista diretamente pelo celular
+                            enquanto estiver no supermercado.
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="text-5xl font-black text-[#6baa72]">
+                            03
+                        </span>
+
+                        <h3 class="mt-6 text-xl font-bold text-white">
+                            Marque os itens
+                        </h3>
+
+                        <p class="mt-3 leading-7 text-gray-300">
+                            Comprou? Marque. No final, você sabe
+                            exatamente o que já está no carrinho.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+        <section>
+
+            <div class="mx-auto max-w-4xl px-6 py-28 text-center">
+
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-[#e8f4e8] text-3xl">
+                    🛒
+                </div>
+
+                <h2 class="mt-7 text-4xl font-black tracking-tight text-[#243b2a] md:text-5xl">
+                    Pronto para fazer sua primeira lista?
+                </h2>
+
+                <p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-gray-500">
+                    Crie sua conta gratuitamente e comece
+                    a organizar suas compras hoje.
+                </p>
+
+                <a href="/cadastro"
+                   class="mt-8 inline-block rounded-2xl bg-[#243b2a] px-8 py-4 font-bold text-white transition hover:bg-[#1b2e20]">
+                    Começar agora →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#e9ebe6] bg-white">
+
+        <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-gray-400 md:flex-row">
+
+            <div class="font-bold text-[#243b2a]">
+                My<span class="text-[#6baa72]">Cart</span>
+            </div>
+
+            <p>
+                © 2026 MyCart. Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
