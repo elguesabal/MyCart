@@ -1,10 +1,5 @@
-package com.elguesabal.MyCart.service;
+// package com.elguesabal.MyCart.service;
 
-import org.springframework.stereotype.Service;
+// public class CartService {
 
-@Service
-public class CartService {
-	public String cart() {
-		return ("Cart");
-	}
-}
+// }

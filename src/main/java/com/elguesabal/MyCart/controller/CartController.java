@@ -1,20 +1,23 @@
 package com.elguesabal.MyCart.controller;
 
-import com.elguesabal.MyCart.service.CartService;
-
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
-@RequestMapping("/api/login")
+import com.elguesabal.MyCart.model.CartItem;
+
+import org.springframework.ui.Model;
+
+@Controller
+@RequestMapping("/cart")
 public class CartController {
-	@Autowired
-    private CartService cartService;
+    @GetMapping("/{id}")
+    public String cart(@PathVariable("id") String id, Model model) {
+        CartItem    item = new CartItem(id);
 
-	@GetMapping
-	public String login() {
-		return (this.cartService.cart());
-	}
+        model.addAttribute("id", id);
+        model.addAttribute("item", item);
+        return ("cart");
+    }
 }

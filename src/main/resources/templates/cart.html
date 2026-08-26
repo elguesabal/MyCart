@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MyCart</title>
+	<link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+<body>
+	<div th:replace="~{/fragments/header :: header}"></div>
+	<h1>Minha lista</h1>
+	<p>ID: <span th:text="${id}"></span></p>
+	<p>Produto: <span th:text="${item.name}"></span></p>
+	<p>Quantidade: <span th:text="${item.quantity}"></span></p>
+	<p>Comprado: <span th:text="${item.checked}"></span></p>
+</body>
+</html>
