@@ -3,11 +3,20 @@ package com.elguesabal.MyCart.model;
 public class CartItem {
 	private String  name;
 	private int     quantity;
+	private String	unit;
 	private boolean checked;
 
 	public CartItem(String name) {
 		this.name = name;
 		this.quantity = 1;
+		this.unit = null;
+		this.checked = false;
+	}
+
+	public CartItem(String name, String unit) {
+		this.name = name;
+		this.quantity = 1;
+		this.unit = unit;
 		this.checked = false;
 	}
 
@@ -25,6 +34,14 @@ public class CartItem {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getUnit() {
+		return (this.unit);
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 	public boolean getChecked() {
