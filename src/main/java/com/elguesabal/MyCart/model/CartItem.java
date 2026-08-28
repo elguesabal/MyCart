@@ -20,6 +20,13 @@ public class CartItem {
 		this.checked = false;
 	}
 
+	public CartItem(String name, int quantity, String unit, boolean checked) {
+		this.name = name;
+		this.quantity = quantity;
+		this.unit = unit;
+		this.checked = checked;
+	}
+
 	public String getName() {
 		return (this.name);
 	}

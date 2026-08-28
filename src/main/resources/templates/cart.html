@@ -10,10 +10,12 @@
 	<div th:replace="~{/fragments/header :: header}"></div>
 	<h1>Minha lista</h1>
 	<p>ID: <span th:text="${id}"></span></p>
-	<div class="my-3" th:each="item : ${items}">
-		<p>Produto: <span th:text="${item.name}"></span></p>
-		<p>Quantidade: <span th:text="${item.quantity}"></span><span th:text="${item.unit}"></span></p>
-		<p>Comprado: <span th:text="${item.checked}"></span></p>
+	<div class="my-5">
+		<p>Name: <span th:text="${cart.name}"></span></p>
+		<p>Description: <span th:text="${cart.description}"></span></p>
+	</div>
+	<div class="gap-4" th:each="item : ${cart.items}">
+		<p>Item: <span th:text="${item.name}"></span></p>
 	</div>
 </body>
 </html>

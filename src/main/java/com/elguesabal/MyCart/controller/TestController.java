@@ -18,8 +18,8 @@ public class TestController {
 		this.cartService = cartService;
 	}
 
-	@GetMapping
-	public List<Cart> test() {
+	@GetMapping("/1")
+	public List<Cart> test1() {
 		List<Cart>	query = cartService.findAll();
 
 		for (Cart cart : query) {
@@ -29,6 +29,18 @@ public class TestController {
 			System.out.println("description: " + cart.getDescription());
 			System.out.println();
 		}
+		return (query);
+	}
+
+	@GetMapping("/2")
+	public Cart test2() {
+		Cart	query = cartService.findId("309ed6cf-b62c-4590-93d2-b8d438c9c631");
+
+		System.out.println();
+		System.out.println("id: " + query.getId());
+		System.out.println("name: " + query.getName());
+		System.out.println("description: " + query.getDescription());
+		System.out.println();
 		return (query);
 	}
 }
