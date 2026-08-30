@@ -40,7 +40,7 @@ public class CartController {
 
 	@GetMapping("/{id}")
 	public String cart(@PathVariable("id") String id, Model model) {
-		Cart			cart = cartService.findId(id);
+		Cart	cart = cartService.findId(id);
 		
 		cart.setItems(cartService.findItems(id));
 		model.addAttribute("id", id);

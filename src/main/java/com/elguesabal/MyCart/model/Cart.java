@@ -27,6 +27,13 @@ public class Cart {
 		this.items = new ArrayList<>();
 	}
 
+	public Cart(String name, String description) {
+		this.id = null;
+		this.name = name;
+		this.description = description;
+		this.items = new ArrayList<>();
+	}
+
 	public UUID getId() {
 		return (this.id);
 	}
