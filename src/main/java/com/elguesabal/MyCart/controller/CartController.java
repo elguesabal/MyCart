@@ -12,6 +12,8 @@ import com.elguesabal.MyCart.model.Cart;
 // import com.elguesabal.MyCart.model.CartItem;
 import com.elguesabal.MyCart.service.CartService;
 
+// import tools.jackson.databind.ObjectMapper;
+
 import org.springframework.ui.Model;
 
 @Controller
@@ -43,6 +45,12 @@ public class CartController {
 		Cart	cart = cartService.findId(id);
 		
 		cart.setItems(cartService.findItems(id));
+// System.out.println("cart");
+// System.out.println(
+//     new ObjectMapper()
+//         .writerWithDefaultPrettyPrinter()
+//         .writeValueAsString(cart)
+// );
 		model.addAttribute("id", id);
 		model.addAttribute("cart", cart);
 		return ("cart");

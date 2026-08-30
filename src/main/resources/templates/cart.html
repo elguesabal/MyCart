@@ -9,13 +9,14 @@
 <body>
 	<div th:replace="~{/fragments/header :: header}"></div>
 	<h1>Minha lista</h1>
-	<p>ID: <span th:text="${id}"></span></p>
+	<!-- <p>ID: <span th:text="${id}"></span></p>
 	<div class="my-5">
 		<p>Name: <span th:text="${cart.name}"></span></p>
 		<p>Description: <span th:text="${cart.description}"></span></p>
 	</div>
 	<div class="gap-4" th:each="item : ${cart.items}">
 		<p>Item: <span th:text="${item.name}"></span></p>
-	</div>
+	</div> -->
+	<div th:replace="~{/fragments/list :: list}"></div>
 </body>
 </html>

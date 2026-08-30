@@ -65,4 +65,26 @@ public class Cart {
 	public void setItems(List<CartItem> items) {
 		this.items = items;
 	}
+
+	public void addItem(CartItem item) {
+		this.items.add(item);
+	}
+
+	public int getCountItems() {
+		return (this.items.size());		
+	}
+
+	public int getCountChecked() {
+		int	count = 0;
+
+		for (CartItem item : this.items) {
+			if (item.getChecked()) count++;
+		}
+		return (count);
+	}
+
+	public int getPercentageChecked() {
+		if (this.items.isEmpty()) return (0);
+		return ((this.getCountChecked() * 100) / this.getCountItems());
+	}
 }
