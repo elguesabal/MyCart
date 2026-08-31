@@ -60,6 +60,7 @@ public class CartService {
 		return (jdbcTemplate.query(
 			sql,
 			(resultSet, rowNum) -> new CartItem(
+                resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getInt("quantity"),
                 resultSet.getString("unit"),

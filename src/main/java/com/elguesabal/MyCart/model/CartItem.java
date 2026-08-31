@@ -1,12 +1,14 @@
 package com.elguesabal.MyCart.model;
 
 public class CartItem {
+	private int		id;
 	private String  name;
 	private int     quantity;
 	private String	unit;
 	private boolean checked;
 
 	public CartItem(String name) {
+		this.id = 0;
 		this.name = name;
 		this.quantity = 1;
 		this.unit = null;
@@ -14,24 +16,44 @@ public class CartItem {
 	}
 
 	public CartItem(String name, String unit) {
+		this.id = 0;
 		this.name = name;
 		this.quantity = 1;
 		this.unit = unit;
 		this.checked = false;
 	}
 
-	public CartItem(String name, int quantity, String unit, boolean checked) {
+	public CartItem(int id, String name, int quantity, String unit, boolean checked) {
+		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
 		this.unit = unit;
 		this.checked = checked;
 	}
 
+	public CartItem(String name, int quantity, String unit, boolean checked) {
+		this.id = 0;
+		this.name = name;
+		this.quantity = quantity;
+		this.unit = unit;
+		this.checked = checked;
+	}
+
+
 	public CartItem(String name, int quantity, boolean checked) {
+		this.id = 0;
 		this.name = name;
 		this.quantity = quantity;
 		this.unit = null;
 		this.checked = checked;
+	}
+
+	public int getId() {
+		return (this.id);
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {

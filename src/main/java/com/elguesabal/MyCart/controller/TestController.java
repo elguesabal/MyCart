@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elguesabal.MyCart.model.Cart;
+import com.elguesabal.MyCart.model.CartItem;
 import com.elguesabal.MyCart.service.CartService;
 
 @RestController
@@ -41,6 +42,20 @@ public class TestController {
 		System.out.println("name: " + query.getName());
 		System.out.println("description: " + query.getDescription());
 		System.out.println();
+		return (query);
+	}
+
+	@GetMapping("/3")
+	public Cart test3() {
+		Cart	query = cartService.findId("309ed6cf-b62c-4590-93d2-b8d438c9c631");
+
+		query.setItems(cartService.findItems("309ed6cf-b62c-4590-93d2-b8d438c9c631"));
+		for (CartItem item : query.getItems()) {
+			System.out.println();
+			System.out.println("id: " + item.getId());
+			System.out.println("name: " + item.getName());
+			System.out.println();
+		}
 		return (query);
 	}
 }

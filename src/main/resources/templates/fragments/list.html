@@ -1,4 +1,4 @@
-<div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-xl" th:fragment="list">
+<div class="cart-list rounded-3xl border border-gray-200 bg-white p-6 shadow-xl" th:fragment="list">
 	<div class="flex items-center justify-between gap-3">
 		<h2 class="mt-1 text-2xl font-bold" th:text="${cart.name}"></h2>
 		<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-2xl">
@@ -10,11 +10,30 @@
 			<div class="flex h-5 w-5 items-center justify-center rounded-md border-2" th:classappend="${item.checked} ? 'border-blue-500' : 'border-gray-300'">
 				<span class="text-xs text-blue-600" th:if="${item.checked}">✓</span>
 			</div>
-			<span class="font-medium" th:text="${item.name}"></span>
+			<!-- <span class="font-medium" th:text="${item.name}"></span> -->
+			<input class="min-w-0 flex-1 bg-transparent font-medium outline-none" th:value="${item.name}" th:name="'name'" type="text" /> <!--  readonly -->
 			<div class="ml-auto text-sm text-gray-400">
-				<span th:text="${item.quantity}"></span>
-				<span th:text="${item.unit}"></span>
+				<!-- <span th:text="${item.quantity}"></span> -->
+<input
+	class="item-field w-16 bg-transparent text-right text-sm text-gray-400 outline-none"
+	th:value="${item.quantity}"
+	th:data-item-id="${item.id}"
+	data-field="quantity"
+	type="number"
+	min="0"
+/>
+				<!-- <span th:text="${item.unit}"></span> -->
+<input
+	class="item-field w-12 bg-transparent text-sm text-gray-400 outline-none"
+	th:value="${item.unit}"
+	th:data-item-id="${item.id}"
+	data-field="unit"
+	type="text"
+/>
 			</div>
+			<button class="delete-item flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-gray-400 transition cursor-pointer hover:bg-red-50 hover:text-red-600" th:data-item-name="${item.name}" type="button" title="Excluir produto" aria-label="Excluir produto">
+				🗑️
+			</button>
 		</div>
 	</div>
 	<div class="mt-6 flex items-center justify-between border-t border-gray-100 pt-5">
