@@ -84,7 +84,7 @@ public class Cart {
 	}
 
 	public int getPercentageChecked() {
-		if (this.items.isEmpty()) return (0);
+		if (this.items.isEmpty()) return (100);
 		return ((this.getCountChecked() * 100) / this.getCountItems());
 	}
 }

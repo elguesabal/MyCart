@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CartService {
@@ -14,6 +15,25 @@ public class CartService {
 
 	public CartService(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	public Cart createCart() {
+		String sql = """
+				INSERT INTO carts (name, description)
+				VALUES (?, ?)
+				RETURNING id, name, description
+				""";
+
+		return (jdbcTemplate.queryForObject(
+			sql,
+			(res, rowNum) -> new Cart(
+				res.getObject("id", UUID.class),
+				res.getString("name"),
+				res.getString("description")
+			),
+			"Minha lista",
+			null
+		));
 	}
 
 	public List<Cart> findAll() {
@@ -24,10 +44,10 @@ public class CartService {
 		
 		return (jdbcTemplate.query(
 			sql,
-			(resultSet, rowNum) -> new Cart(
-				resultSet.getObject("id", java.util.UUID.class),
-				resultSet.getString("name"),
-				resultSet.getString("description")
+			(res, rowNum) -> new Cart(
+				res.getObject("id", java.util.UUID.class),
+				res.getString("name"),
+				res.getString("description")
 			)
 		));
 	}
@@ -41,10 +61,10 @@ public class CartService {
 		
 		return (jdbcTemplate.queryForObject(
 			sql,
-			(resultSet, rowNum) -> new Cart(
-				resultSet.getObject("id", java.util.UUID.class),
-				resultSet.getString("name"),
-				resultSet.getString("description")
+			(res, rowNum) -> new Cart(
+				res.getObject("id", java.util.UUID.class),
+				res.getString("name"),
+				res.getString("description")
 			),
 			java.util.UUID.fromString(id)
 		));
@@ -59,12 +79,12 @@ public class CartService {
 
 		return (jdbcTemplate.query(
 			sql,
-			(resultSet, rowNum) -> new CartItem(
-                resultSet.getInt("id"),
-                resultSet.getString("name"),
-                resultSet.getInt("quantity"),
-                resultSet.getString("unit"),
-                resultSet.getBoolean("checked")
+			(res, rowNum) -> new CartItem(
+                res.getInt("id"),
+                res.getString("name"),
+                res.getInt("quantity"),
+                res.getString("unit"),
+                res.getBoolean("checked")
 			),
 			java.util.UUID.fromString(id)
 		));

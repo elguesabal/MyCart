@@ -58,4 +58,9 @@ public class TestController {
 		}
 		return (query);
 	}
+
+	@GetMapping("/4")
+	public String test4() {
+		return ("vampeta");
+	}
 }

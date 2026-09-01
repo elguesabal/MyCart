@@ -3,6 +3,7 @@ package com.elguesabal.MyCart.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.elguesabal.MyCart.model.Cart;
@@ -28,5 +29,12 @@ public class CartController {
 		model.addAttribute("id", id);
 		model.addAttribute("cart", cart);
 		return ("cart");
+	}
+
+	@PostMapping("/create")
+	public String createCart() {
+		Cart	cart = cartService.createCart();
+
+		return ("redirect:/cart/" + cart.getId());
 	}
 }

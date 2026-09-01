@@ -39,7 +39,6 @@ public class CartItem {
 		this.checked = checked;
 	}
 
-
 	public CartItem(String name, int quantity, boolean checked) {
 		this.id = 0;
 		this.name = name;

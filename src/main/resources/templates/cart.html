@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>MyCart</title>
 	<link rel="stylesheet" th:href="@{/css/output.css}">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="/js/axios.js" defer></script>
+	<script src="/js/list.js" defer></script>
 </head>
 <body>
 	<div th:replace="~{/fragments/header :: header}"></div>
@@ -17,6 +20,8 @@
 	<div class="gap-4" th:each="item : ${cart.items}">
 		<p>Item: <span th:text="${item.name}"></span></p>
 	</div> -->
-	<div th:replace="~{/fragments/list :: list}"></div>
+	<div class="mx-3 md:mx-10">
+		<div th:insert="~{/fragments/list :: list}"></div>
+	</div>
 </body>
 </html>
