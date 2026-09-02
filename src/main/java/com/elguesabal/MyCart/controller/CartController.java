@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.elguesabal.MyCart.model.Cart;
 import com.elguesabal.MyCart.service.CartService;
 
-
 import org.springframework.ui.Model;
 
 @Controller
