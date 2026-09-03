@@ -36,23 +36,23 @@ public class CartService {
 		));
 	}
 
-	public List<Cart> findAll() {
-		String sql = """
-				SELECT id, name, description
-				FROM carts
-				""";
+	// public List<Cart> findAll() {
+	// 	String sql = """
+	// 			SELECT id, name, description
+	// 			FROM carts
+	// 			""";
 		
-		return (jdbcTemplate.query(
-			sql,
-			(res, rowNum) -> new Cart(
-				res.getObject("id", java.util.UUID.class),
-				res.getString("name"),
-				res.getString("description")
-			)
-		));
-	}
+	// 	return (jdbcTemplate.query(
+	// 		sql,
+	// 		(res, rowNum) -> new Cart(
+	// 			res.getObject("id", UUID.class),
+	// 			res.getString("name"),
+	// 			res.getString("description")
+	// 		)
+	// 	));
+	// }
 
-	public Cart findId(String id) {
+	public Cart findCart(String id) {
 		String	sql = """
 				SELECT id, name, description
 				FROM carts
@@ -62,11 +62,11 @@ public class CartService {
 		return (jdbcTemplate.queryForObject(
 			sql,
 			(res, rowNum) -> new Cart(
-				res.getObject("id", java.util.UUID.class),
+				res.getObject("id", UUID.class),
 				res.getString("name"),
 				res.getString("description")
 			),
-			java.util.UUID.fromString(id)
+			UUID.fromString(id)
 		));
 	}
 
@@ -86,7 +86,7 @@ public class CartService {
                 res.getString("unit"),
                 res.getBoolean("checked")
 			),
-			java.util.UUID.fromString(id)
+			UUID.fromString(id)
 		));
 	}
 }
