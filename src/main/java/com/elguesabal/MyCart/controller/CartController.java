@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
 
 import com.elguesabal.MyCart.model.Cart;
 import com.elguesabal.MyCart.service.CartService;
-
-import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/cart")
@@ -25,7 +24,6 @@ public class CartController {
 		Cart	cart = cartService.findCart(id);
 
 		cart.setItems(cartService.findItems(id));
-		// model.addAttribute("id", id);
 		model.addAttribute("cart", cart);
 		return ("cart");
 	}

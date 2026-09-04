@@ -1,0 +1,21 @@
+<div class="cart-item flex items-center gap-2 rounded-xl bg-gray-50 p-3 sm:gap-3 sm:p-4" th:fragment="item(item)">
+	<label class="relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center">
+		<input class="check-item item-checkbox peer absolute h-5 w-5 cursor-pointer opacity-0" th:checked="${item.checked}" th:data-item-id="${item.id}" type="checkbox" />
+		<span class="flex h-5 w-5 items-center justify-center rounded-md border-2 border-gray-300 text-xs text-white transition peer-checked:border-blue-500 peer-checked:bg-blue-500">
+			✓
+		</span>
+	</label>
+	<input class="name-item min-w-0 flex-1 bg-transparent font-medium outline-none" th:value="${item.name}" th:data-item-id="${item.id}" type="text" />
+	<input class="quantity-item item-field w-12 shrink-0 bg-transparent text-right text-sm text-gray-400 outline-none sm:w-16" th:value="${item.quantity}" th:data-item-id="${item.id}" data-field="quantity" type="number" min="0" />
+	<select class="unit-item item-field w-14 shrink-0 bg-transparent text-sm text-gray-500 outline-none sm:w-16" th:data-item-id="${item.id}" data-field="unit">
+		<option value="" th:selected="${item.unit == ''}"></option>
+		<option value="un" th:selected="${item.unit == 'un'}">un</option>
+		<option value="kg" th:selected="${item.unit == 'kg'}">kg</option>
+		<option value="g" th:selected="${item.unit == 'g'}">g</option>
+		<option value="L" th:selected="${item.unit == 'L'}">L</option>
+		<option value="ml" th:selected="${item.unit == 'ml'}">ml</option>
+	</select>
+	<button class="delete-item flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-gray-400 transition hover:bg-red-50 hover:text-red-600" th:data-item-id="${item.id}" type="button" title="Excluir produto" aria-label="Excluir produto">
+		🗑️
+	</button>
+</div>

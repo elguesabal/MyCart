@@ -1,3 +1,11 @@
+/**
+ * @author VAMPETA
+ * @brief CAPTURA O NOVO ESTADO DE MARCADO OU DESMARCADO E ENVIA PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".check-item").dataset.itemId IDENTIFICADOR DO ITEM
+ * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
+ * @param {boolean} event.target.closest(".check-item").checked NOVO ESTADO DO ITEM
+*/
 async function checkItem(event) {
 	const checkbox = event.target.closest(".check-item");
 	if (!checkbox) return;
@@ -18,6 +26,12 @@ async function checkItem(event) {
 	if (res.status !== 204) checkbox.checked = !checked;
 }
 
+/**
+ * @author VAMPETA
+ * @brief SALVA O TANTIGO NOME
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".name-item").value SALVA O ANTIGO NOME DO PRODUTO
+*/
 function nameEditing(event) {
 	const inputName = event.target.closest(".name-item");
 	if (!inputName) return;
@@ -25,6 +39,14 @@ function nameEditing(event) {
 	inputName.dataset.originalValue = inputName.value;
 }
 
+/**
+ * @author VAMPETA
+ * @brief CAPTURA O NOVO NOME E ENVIA PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".name-item").dataset.itemId IDENTIFICADOR DO ITEM
+ * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
+ * @param {string} event.target.closest(".name-item").value NOVO NOME DO PRODUTO
+*/
 async function nameItem(event) {
 	const inputName = event.target.closest(".name-item");
 	if (!inputName) return;
@@ -46,6 +68,12 @@ async function nameItem(event) {
 	if (res.status !== 204) inputName.value = originalName;
 }
 
+/**
+ * @author VAMPETA
+ * @brief 
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".quantity-item").value SALVA A ANTIGA QUANTIDADE DO PRODUTO
+*/
 function quantityEditing(event) {
 	const inputQuantity = event.target.closest(".quantity-item");
 
@@ -53,6 +81,14 @@ function quantityEditing(event) {
 	inputQuantity.dataset.originalValue = inputQuantity.value;
 }
 
+/**
+ * @author VAMPETA
+ * @brief CAPTURA A NOVA QUANTIDADE E ENVIA PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".quantity-item").dataset.itemId IDENTIFICADOR DO ITEM
+ * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
+ * @param {string} event.target.closest(".quantity-item").value NOVA QUANTIDADE DO PRODUTO
+*/
 async function quantityItem(event) {
 	const inputQuantity = event.target.closest(".quantity-item");
 	if (!inputQuantity) return;
@@ -74,6 +110,12 @@ async function quantityItem(event) {
 	if (res.status !== 204) inputQuantity.value = originalQuantity;
 }
 
+/**
+ * @author VAMPETA
+ * @brief 
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".unit-item").value SALVA A ANTIGA UNIDADE DE MEDIDA DO ITEM
+*/
 function unitEditing(event) {
 	const select = event.target.closest(".unit-item");
 
@@ -81,6 +123,14 @@ function unitEditing(event) {
 	select.dataset.originalValue = select.value;
 }
 
+/**
+ * @author VAMPETA
+ * @brief CAPTURA A NOVA UNIDADE DE MEDIDA E ENVIA PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".unit-item").dataset.itemId IDENTIFICADOR DO ITEM
+ * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
+ * @param {string} event.target.closest(".unit-item").value NOVA UNIDADE DE MEDIDA DO ITEM
+*/
 async function unitItem(event) {
 	const select = event.target.closest(".unit-item");
 	if (!select) return;
@@ -102,6 +152,13 @@ async function unitItem(event) {
 	if (res.status !== 204) select.value = originalUnit;
 }
 
+/**
+ * @author VAMPETA
+ * @brief DELETA UM ITEM E FAZ A REQUISICAO PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest(".delete-item").dataset.itemId IDENTIFICADOR DO ITEM
+ * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
+*/
 async function deleteItem(event) {
 	const buttonDelete = event.target.closest(".delete-item");
 	if (!buttonDelete) return;
@@ -128,61 +185,33 @@ async function deleteItem(event) {
 	}
 }
 
-function addItem() {
-	const cartList = document.querySelector(".cart-list");
-	const cartItems = cartList.querySelector("#cart-items");
-	const emptyCart = cartList.querySelector("#empty-cart");
-	const item = document.createElement("div");
+/**
+ * @author VAMPETA
+ * @brief ADICIONA UM ITEM E FAZ A REQUISICAO PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+*/
+async function addItem(event) {
+    const cartList = event.target.closest(".cart-list");
+    const cartItems = cartList.querySelector("#cart-items");
+    const emptyCart = cartList.querySelector("#empty-cart");
+    const cartId = document.querySelector(".cart-list").dataset.cartId;
+	const res = await api({
+		method: "POST",
+		url: "/item/create",
+		data: {
+			cartId: cartId,
+			name: "Produto",
+			quantity: 1,
+			unit: "",
+			checked: false
+		}
+	});
 
-	item.className = "cart-item flex items-center gap-2 rounded-xl bg-gray-50 p-3 sm:gap-3 sm:p-4";
-	item.innerHTML = `
-		<label class="relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center">
-			<input
-				class="check-item item-checkbox peer absolute h-5 w-5 cursor-pointer opacity-0"
-				type="checkbox"
-			/>
-			<span class="flex h-5 w-5 items-center justify-center rounded-md border-2 border-gray-300 text-xs text-white transition peer-checked:border-blue-500 peer-checked:bg-blue-500">
-				✓
-			</span>
-		</label>
-
-		<input
-			class="name-item min-w-0 flex-1 bg-transparent font-medium outline-none"
-			type="text"
-			placeholder="Nome do produto"
-		/>
-
-		<input
-			class="quantity-item item-field w-12 shrink-0 bg-transparent text-right text-sm text-gray-400 outline-none sm:w-16"
-			type="number"
-			min="0"
-			value="1"
-		/>
-
-		<select
-			class="unit-item item-field w-14 shrink-0 bg-transparent text-sm text-gray-500 outline-none sm:w-16"
-		>
-			<option value=""></option>
-			<option value="un">un</option>
-			<option value="kg">kg</option>
-			<option value="g">g</option>
-			<option value="L">L</option>
-			<option value="ml">ml</option>
-		</select>
-
-		<button
-			class="delete-item flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-gray-400 transition hover:bg-red-50 hover:text-red-600"
-			type="button"
-			title="Excluir produto"
-			aria-label="Excluir produto"
-		>
-			🗑️
-		</button>
-	`;
-	cartItems.appendChild(item);
-	cartItems.classList.remove("hidden");
-	emptyCart.classList.add("hidden");
-	item.querySelector(".name-item").focus();
+	if (res.status === 201) {
+		cartList.querySelector("#cart-items").insertAdjacentHTML("beforeend", res.data);
+		cartItems.classList.remove("hidden");
+		emptyCart.classList.add("hidden");
+	}
 }
 
 document.querySelector(".cart-list").addEventListener("click", checkItem);
