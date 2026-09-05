@@ -111,7 +111,7 @@ public class Cart {
 
 	/**
 	 * @author VAMPETA
-	 * @brief ADICIONA UM ITEM A this.items			TO USANDO ISSO?????
+	 * @brief ADICIONA UM ITEM A this.items
 	 * @param item ITEM A SER ADICIONADO A LISTA
 	*/
 	public void addItem(CartItem item) {

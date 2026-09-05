@@ -2,10 +2,10 @@ package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
 
-public class NameRequest {
+public class QuantityItemRequest {
     private UUID	cartId;
 	private Long	itemId;
-	private String	name;
+	private int		quantity;
 
 	public UUID getCartId() {
 		return (this.cartId);
@@ -23,11 +23,11 @@ public class NameRequest {
 		this.itemId = itemId;
 	}
 
-	public String getName() {
-		return (this.name);
+	public int getQuantity() {
+		return (this.quantity);
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

@@ -25,7 +25,7 @@
 		</button>
 	</div>
 	<div class="flex justify-between gap-2 shrink-0 border-t border-gray-100 pt-5 text-sm">
-		<span class="text-sm text-gray-500"><span th:text="${cart.countItems}"></span> de <span th:text="${cart.countChecked}"></span> itens</span>
-		<span class="font-semibold text-blue-600"><span th:text="${cart.percentageChecked}"></span>% concluído</span>
+		<span class="text-sm text-gray-500"><span id="count-items" th:text="${cart.countItems}"></span> de <span id="count-checked" th:text="${cart.countChecked}"></span> itens</span>
+		<span class="font-semibold text-blue-600"><span id="percentage-checked" th:text="${cart.percentageChecked}"></span>% concluído</span>
 	</div>
 </div>

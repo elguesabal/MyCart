@@ -2,6 +2,15 @@ package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
 
+/**
+ * @author VAMPETA
+ * @brief CLASSE RESPONSAVEL POR ARMAZENAR INFORMACOES DO BODY NA ROTA POST /item/create
+ * @param cartId ID DO CARRINHO
+ * @param name NOME DO NOVO ITEM
+ * @param quantity QUANTIDADE DO NOVO ITEM
+ * @param unit UNIDADE DE MEDIDA DO NOVO ITEM
+ * @param checked INDICADOR SE O ITEM ESTA MARCADO OU DESMARCADO
+*/
 public class CreateItemRequest {
 	private UUID	cartId;
 	private String	name;

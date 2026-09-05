@@ -2,7 +2,7 @@ package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
 
-public class UnitRequest {
+public class UnitItemRequest {
     private UUID	cartId;
 	private Long	itemId;
 	private String	unit;

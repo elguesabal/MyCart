@@ -2,7 +2,7 @@ package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
 
-public class CheckedRequest {
+public class CheckedItemRequest {
 	private UUID	cartId;
 	private Long	itemId;
 	private boolean	checked;

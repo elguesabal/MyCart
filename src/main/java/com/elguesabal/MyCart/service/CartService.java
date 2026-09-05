@@ -116,4 +116,42 @@ public class CartService {
 			UUID.fromString(id)
 		));
 	}
+
+	/**
+	 * @author VAMPETA
+	 * @brief ATUALIZA O NOME DO CARRINHO
+	 * @param id ID DO CARRINHO
+	 * @param name NOVO NOME DO CARRINHO
+	 * @return RETORNA TRUE PARA SUCESSO
+	 * @return RETORNA FALSE PARA ERRO
+	*/
+	public boolean updateName(UUID id, String name) {
+		String	sql = """
+				UPDATE carts
+				SET name = ?
+				WHERE id = ?
+				""";
+		int		rows = jdbcTemplate.update(sql, name, id);
+
+		return (rows > 0);
+	}
+
+	/**
+	 * @author VAMPETA
+	 * @brief ATUALIZA A DESCRICAO DO CARRINHO
+	 * @param id ID DO CARRINHO
+	 * @param description NOVA DESCRICAO DO CARRINHO
+	 * @return RETORNA TRUE PARA SUCESSO
+	 * @return RETORNA FALSE PARA ERRO
+	*/
+	public boolean updateDescription(UUID id, String description) {
+		String	sql = """
+				UPDATE carts
+				SET description = ?
+				WHERE id = ?
+				""";
+		int		rows = jdbcTemplate.update(sql, description, id);
+
+		return (rows > 0);
+	}
 }

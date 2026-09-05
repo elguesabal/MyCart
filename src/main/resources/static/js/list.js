@@ -1,5 +1,98 @@
 /**
  * @author VAMPETA
+ * @brief SALVA O ANTIGO NOME DO CARRINHO
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest("#cart-name").value SALVA O ANTIGO NOME DO CARRINHO
+*/
+function nameEditingCart(event) {
+	const inputName = event.target.closest("#cart-name");
+	if (!inputName) return;
+
+	inputName.dataset.originalValue = inputName.value;
+}
+
+/**
+ * @author VAMPETA
+ * @brief CAPTURA O NOVO NOME DO CARRINHO E ENVIA PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest("#cart-name").dataset.cartId IDENTIFICADOR DO CARRINHO
+ * @param {string} event.target.closest("#cart-name").value NOVO NOME DO CARRINHO
+*/
+async function updateNameCart(event) {
+	const inputName = event.target.closest("#cart-name");
+	if (!inputName) return;
+	const cartId = inputName.dataset.cartId;
+	const originalName = inputName.dataset.originalValue;
+	const name = inputName.value.trim();
+	const res = await api({
+		method: "PATCH",
+		url: "/cart/name",
+		data: {
+			id: cartId,
+			name: name
+		}
+	});
+
+	if (res.status !== 204) inputName.value = originalName;
+}
+
+/**
+ * @author VAMPETA
+ * @brief SALVA A ANTIGA DESCRICAO DO CARRINHO
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest("#cart-name").value SALVA A ANTIGA DESCRICAO DO PRODUTO
+*/
+function descriptionEditingCart(event) {
+	const inputDescription = event.target.closest("#cart-description");
+	if (!inputDescription) return;
+
+	inputDescription.dataset.originalValue = inputDescription.value;
+}
+
+/**
+ * @author VAMPETA
+ * @brief CAPTURA A NOVA DESCRICAO DO CARRINHO E ENVIA PARA O BACK END
+ * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
+ * @param {string} event.target.closest("#cart-name").dataset.cartId IDENTIFICADOR DO CARRINHO
+ * @param {string} event.target.closest("#cart-name").value NOVA DESCRICAO DO CARRINHO
+*/
+async function updateDescriptionCart(event) {
+	const inputDescription = event.target.closest("#cart-description");
+	if (!inputDescription) return;
+	const cartId = inputDescription.dataset.cartId;
+	const originalDescription = inputDescription.dataset.originalValue;
+	const description = inputDescription.value.trim();
+	const res = await api({
+		method: "PATCH",
+		url: "/cart/description",
+		data: {
+			id: cartId,
+			description: description
+		}
+	});
+
+	if (res.status !== 204) inputDescription.value = originalDescription;
+}
+
+/**
+ * @author VAMPETA
+ * @brief ATUALIZA AS ESTATISTICAS DA LISTA
+ * @param {Object} cartList OBJETO COM INFORMACOES DO NOVO CARRINHO
+*/
+function updateCartStatus(cartList) {
+	const items = cartList.querySelectorAll(".cart-item");
+	const checkedItems = cartList.querySelectorAll(".item-checkbox:checked");
+	const countItems = items.length;
+	const countChecked = checkedItems.length;
+	const percentageChecked = (countItems === 0) ? 0 : Math.round((countChecked / countItems) * 100);
+
+	document.querySelector("#count-items").textContent = countItems;
+	document.querySelector("#count-checked").textContent = countChecked;
+	document.querySelector("#percentage-checked").textContent = percentageChecked;
+}
+
+/**
+ * @author VAMPETA
  * @brief CAPTURA O NOVO ESTADO DE MARCADO OU DESMARCADO E ENVIA PARA O BACK END
  * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
  * @param {string} event.target.closest(".check-item").dataset.itemId IDENTIFICADOR DO ITEM
@@ -23,16 +116,20 @@ async function checkItem(event) {
 		}
 	});
 
-	if (res.status !== 204) checkbox.checked = !checked;
+	if (res.status !== 204) {
+		checkbox.checked = !checked;
+		return;
+	}
+	updateCartStatus(cartList);
 }
 
 /**
  * @author VAMPETA
- * @brief SALVA O TANTIGO NOME
+ * @brief SALVA O ANTIGO NOME ITEM
  * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
  * @param {string} event.target.closest(".name-item").value SALVA O ANTIGO NOME DO PRODUTO
 */
-function nameEditing(event) {
+function nameEditingItem(event) {
 	const inputName = event.target.closest(".name-item");
 	if (!inputName) return;
 
@@ -41,7 +138,7 @@ function nameEditing(event) {
 
 /**
  * @author VAMPETA
- * @brief CAPTURA O NOVO NOME E ENVIA PARA O BACK END
+ * @brief CAPTURA O NOVO NOME DO ITEM E ENVIA PARA O BACK END
  * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
  * @param {string} event.target.closest(".name-item").dataset.itemId IDENTIFICADOR DO ITEM
  * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
@@ -70,11 +167,11 @@ async function nameItem(event) {
 
 /**
  * @author VAMPETA
- * @brief 
+ * @brief SALVA A ANTIGA QUANTIDADE DO ITEM
  * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
  * @param {string} event.target.closest(".quantity-item").value SALVA A ANTIGA QUANTIDADE DO PRODUTO
 */
-function quantityEditing(event) {
+function quantityEditingItem(event) {
 	const inputQuantity = event.target.closest(".quantity-item");
 
 	if (!inputQuantity) return;
@@ -83,7 +180,7 @@ function quantityEditing(event) {
 
 /**
  * @author VAMPETA
- * @brief CAPTURA A NOVA QUANTIDADE E ENVIA PARA O BACK END
+ * @brief CAPTURA A NOVA QUANTIDADE DO ITEM E ENVIA PARA O BACK END
  * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
  * @param {string} event.target.closest(".quantity-item").dataset.itemId IDENTIFICADOR DO ITEM
  * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
@@ -112,11 +209,11 @@ async function quantityItem(event) {
 
 /**
  * @author VAMPETA
- * @brief 
+ * @brief SALVA A ANTIGA UNIDADE DE MEDIDA DO ITEM
  * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
  * @param {string} event.target.closest(".unit-item").value SALVA A ANTIGA UNIDADE DE MEDIDA DO ITEM
 */
-function unitEditing(event) {
+function unitEditingItem(event) {
 	const select = event.target.closest(".unit-item");
 
 	if (!select) return;
@@ -125,7 +222,7 @@ function unitEditing(event) {
 
 /**
  * @author VAMPETA
- * @brief CAPTURA A NOVA UNIDADE DE MEDIDA E ENVIA PARA O BACK END
+ * @brief CAPTURA A NOVA UNIDADE DE MEDIDA DO ITEM E ENVIA PARA O BACK END
  * @param {Object} event OBJETO COM INFORMACOES DO EVENTO
  * @param {string} event.target.closest(".unit-item").dataset.itemId IDENTIFICADOR DO ITEM
  * @param {string} event.target.closest(".cart-list").dataset.cartId IDENTIFICADOR DO CARRINHO
@@ -179,6 +276,7 @@ async function deleteItem(event) {
 		return;
 	}
 	buttonDelete.closest(".cart-item").remove();
+	updateCartStatus(cartList);
 	if (cartList.querySelectorAll(".cart-item").length === 0) {
 		document.querySelector("#cart-items").classList.add("hidden");
 		document.querySelector("#empty-cart").classList.remove("hidden");
@@ -211,15 +309,20 @@ async function addItem(event) {
 		cartList.querySelector("#cart-items").insertAdjacentHTML("beforeend", res.data);
 		cartItems.classList.remove("hidden");
 		emptyCart.classList.add("hidden");
+		updateCartStatus(cartList);
 	}
 }
 
+document.querySelector("#cart-name").addEventListener("focus", nameEditingCart);
+document.querySelector("#cart-name").addEventListener("blur", updateNameCart);
+document.querySelector("#cart-description").addEventListener("focus", descriptionEditingCart);
+document.querySelector("#cart-description").addEventListener("blur", updateDescriptionCart);
 document.querySelector(".cart-list").addEventListener("click", checkItem);
-document.querySelector(".cart-list").addEventListener("focus", nameEditing, true);
+document.querySelector(".cart-list").addEventListener("focus", nameEditingItem, true);
 document.querySelector(".cart-list").addEventListener("blur", nameItem, true);
-document.querySelector(".cart-list").addEventListener("focus", quantityEditing, true);
+document.querySelector(".cart-list").addEventListener("focus", quantityEditingItem, true);
 document.querySelector(".cart-list").addEventListener("change", quantityItem);
-document.querySelector(".cart-list").addEventListener("focus", unitEditing, true);
+document.querySelector(".cart-list").addEventListener("focus", unitEditingItem, true);
 document.querySelector(".cart-list").addEventListener("change", unitItem);
 document.querySelector(".cart-list").addEventListener("click", deleteItem);
 document.querySelector("#add-item").addEventListener("click", addItem);

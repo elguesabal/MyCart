@@ -14,10 +14,10 @@ import org.springframework.ui.Model;
 import com.elguesabal.MyCart.service.ItemService;
 import com.elguesabal.MyCart.model.CartItem;
 import com.elguesabal.MyCart.model.CreateItemRequest;
-import com.elguesabal.MyCart.model.CheckedRequest;
-import com.elguesabal.MyCart.model.NameRequest;
-import com.elguesabal.MyCart.model.QuantityRequest;
-import com.elguesabal.MyCart.model.UnitRequest;
+import com.elguesabal.MyCart.model.CheckedItemRequest;
+import com.elguesabal.MyCart.model.NameItemRequest;
+import com.elguesabal.MyCart.model.QuantityItemRequest;
+import com.elguesabal.MyCart.model.UnitItemRequest;
 import com.elguesabal.MyCart.model.DeleteItemRequest;
 
 @Controller
@@ -29,13 +29,6 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 
-	// @PostMapping("/create")
-	// public ResponseEntity<CartItem> create(@RequestBody CreateItemRequest body) {
-	// 	CartItem	cartItem = itemService.createItem(body.getCartId());
-
-	// 	return (ResponseEntity.status(HttpStatus.CREATED).body(cartItem));
-	// }
-
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/create")
 	public String create(@RequestBody CreateItemRequest body, Model model) {
@@ -46,7 +39,7 @@ public class ItemController {
 	}
 
 	@PatchMapping("/checked")
-	public ResponseEntity<Void> checked(@RequestBody CheckedRequest body) {
+	public ResponseEntity<Void> checked(@RequestBody CheckedItemRequest body) {
 		boolean	update = itemService.updateChecked(body.getCartId(), body.getItemId(), body.getChecked());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -54,7 +47,7 @@ public class ItemController {
 	}
 
 	@PatchMapping("/name")
-	public ResponseEntity<Void> name(@RequestBody NameRequest body) {
+	public ResponseEntity<Void> name(@RequestBody NameItemRequest body) {
 		boolean	update = itemService.updateName(body.getCartId(), body.getItemId(), body.getName());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -62,7 +55,7 @@ public class ItemController {
 	}
 
 	@PatchMapping("/quantity")
-	public ResponseEntity<Void> quantity(@RequestBody QuantityRequest body) {
+	public ResponseEntity<Void> quantity(@RequestBody QuantityItemRequest body) {
 		boolean	update = itemService.updateQuantity(body.getCartId(), body.getItemId(), body.getQuantity());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -70,7 +63,7 @@ public class ItemController {
 	}
 
 	@PatchMapping("/unit")
-	public ResponseEntity<Void> unit(@RequestBody UnitRequest body) {
+	public ResponseEntity<Void> unit(@RequestBody UnitItemRequest body) {
 		boolean	update = itemService.updateUnit(body.getCartId(), body.getItemId(), body.getUnit());
 
 		if (!update) return (ResponseEntity.notFound().build());
