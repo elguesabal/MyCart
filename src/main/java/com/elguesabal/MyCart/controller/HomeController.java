@@ -8,6 +8,10 @@ import com.elguesabal.MyCart.model.CartItem;
 
 import org.springframework.ui.Model;
 
+/**
+ * @author VAMPETA
+ * @brief 
+*/
 @Controller
 public class HomeController {
 	@GetMapping("/")
