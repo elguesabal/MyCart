@@ -43,5 +43,4 @@ public class DeleteItemRequest {
 	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
-
 }

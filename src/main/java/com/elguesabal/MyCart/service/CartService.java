@@ -154,4 +154,21 @@ public class CartService {
 
 		return (rows > 0);
 	}
+
+	/**
+	 * @author VAMPETA
+	 * @brief DEXCLUI UM CARRINHO
+	 * @param id ID DO CARRINHO
+	 * @return RETORNA TRUE PARA SUCESSO
+	 * @return RETORNA FALSE PARA ERRO
+	*/
+	public boolean deleteCart(UUID id) {
+		String	sql = """
+				DELETE FROM carts
+				WHERE id = ?
+				""";
+		int		rows = jdbcTemplate.update(sql, id);
+
+		return (rows > 0);
+	}
 }
