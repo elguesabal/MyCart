@@ -51,22 +51,6 @@ public class CartService {
 		));
 	}
 
-	// public List<Cart> findAll() {
-	// 	String sql = """
-	// 			SELECT id, name, description
-	// 			FROM carts
-	// 			""";
-		
-	// 	return (jdbcTemplate.query(
-	// 		sql,
-	// 		(res, rowNum) -> new Cart(
-	// 			res.getObject("id", UUID.class),
-	// 			res.getString("name"),
-	// 			res.getString("description")
-	// 		)
-	// 	));
-	// }
-
 	/**
 	 * @author VAMPETA
 	 * @brief BUSCA UM CARRINHO

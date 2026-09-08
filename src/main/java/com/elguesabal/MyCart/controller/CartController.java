@@ -4,15 +4,12 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.elguesabal.MyCart.model.Cart;
 import com.elguesabal.MyCart.service.CartService;
@@ -20,33 +17,46 @@ import com.elguesabal.MyCart.model.NameCartRequest;
 import com.elguesabal.MyCart.model.DescriptionCartRequest;
 import com.elguesabal.MyCart.model.DeleteCartRequest;
 
-@Controller
+/**
+ * @author VAMPETA
+ * @brief CLASSE RESPONSAVEL POR GERENCIAR ROTAS DA API QUE MANIPULAM O CARRINHO
+ * @param cartService SERVICO RESPONSAVEL PELA LOGICA DE NEGOCIO E MANIPULACAO DO CARRINHO
+*/
+@RestController
 @RequestMapping("/cart")
 public class CartController {
 	private final CartService	cartService;
 
+	/**
+	 * @author VAMPETA
+	 * @brief CONSTRUTOR DA CLASSE
+	 * @param cartService SERVICO RESPONSAVEL PELA LOGICA DE NEGOCIO E MANIPULACAO DO CARRINHO
+	*/
 	public CartController(CartService cartService) {
 		this.cartService = cartService;
 	}
 
+	/**
+	 * @author VAMPETA
+	 * @brief CRIA UM CARRINHO
+	 * @return 201 RETORNA O ID DO CARRINHO CRIADO
+	*/
 	@PostMapping("/create")
 	public ResponseEntity<Map<String, Object>> createCart() {
 		Cart	cart = cartService.createCart();
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+		return (ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
 			"id", cart.getId()
-		));
+		)));
 	}
 
-	@GetMapping("/{id}")
-	public String cart(@PathVariable("id") String id, Model model) {
-		Cart	cart = cartService.findCart(id);
-
-		cart.setItems(cartService.findItems(id));
-		model.addAttribute("cart", cart);
-		return ("cart");
-	}
-
+	/**
+	 * @author VAMPETA
+	 * @brief ATUALIZA O NOME DO CARRINHO
+	 * @param body DADOS NECESSARIO PARA ATUALIZACAO DO CARRINHO
+	 * @return 204 RETORNA APENAS O STATUS SE ATUALIZADO COM SUCESSO
+	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O CARRINHO
+	*/
 	@PatchMapping ("/name")
 	public ResponseEntity<Void> name(@RequestBody NameCartRequest body) {
 		boolean	update = cartService.updateName(body.getId(), body.getName());
@@ -55,6 +65,13 @@ public class CartController {
 		return (ResponseEntity.noContent().build());
 	}
 
+	/**
+	 * @author VAMPETA
+	 * @brief ATUALIZA A DESCRICAO DO CARRINHO
+	 * @param body DADOS NECESSARIO PARA ATUALIZACAO DO CARRINHO
+	 * @return 204 RETORNA APENAS O STATUS SE ATUALIZADO COM SUCESSO
+	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O CARRINHO
+	*/
 	@PatchMapping ("/description")
 	public ResponseEntity<Void> description(@RequestBody DescriptionCartRequest body) {
 		boolean	update = cartService.updateDescription(body.getId(), body.getDescription());
@@ -63,6 +80,13 @@ public class CartController {
 		return (ResponseEntity.noContent().build());
 	}
 
+	/**
+	 * @author VAMPETA
+	 * @brief EXCLUI O CARRINHO
+	 * @param body DADOS NECESSARIO PARA EXCLUIR O CARRINHO
+	 * @return 204 RETORNA APENAS O STATUS SE EXCLUIDO COM SUCESSO
+	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O CARRINHO
+	*/
 	@DeleteMapping("/delete")
 	public ResponseEntity<Void> delete(@RequestBody DeleteCartRequest body) {
 		boolean	update = cartService.deleteCart(body.getId());

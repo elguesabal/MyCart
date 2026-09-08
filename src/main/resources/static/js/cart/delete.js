@@ -17,7 +17,7 @@ async function deleteCart(event) {
 		}
 	});
 
-	if (res.status === 204) window.location.href = "/";
+	if (res.status === 204 || res.status === 404) window.location.href = "/";
 }
 
 document.querySelector("#delete-cart").addEventListener("click", deleteCart);
