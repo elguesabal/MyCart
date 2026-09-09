@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCart</title>
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <main class="flex min-h-[calc(100vh-160px)] items-center justify-center px-6 py-16">
+        <section class="w-full max-w-2xl text-center">
+            <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-blue-50 text-5xl">
+                🛒
+            </div>
+            <p class="mt-8 text-8xl font-bold tracking-tight text-blue-600 sm:text-9xl">500</p>
+            <h1 class="mt-6 text-3xl font-bold tracking-tight sm:text-4xl">Ops! Algo deu errado.</h1>
+            <p class="mx-auto mt-4 max-w-lg text-lg leading-8 text-gray-600">Tivemos um problema inesperado ao tentar processar sua solicitação. Não se preocupe, sua lista não foi esquecida.</p>
+            <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                <a class="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-blue-700" th:href="@{/}">
+                    Voltar para o início
+                </a>
+                <a class="rounded-xl border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 transition hover:bg-gray-50" href="javascript:location.reload()">
+                    Tentar novamente
+                </a>
+            </div>
+            <div class="mx-auto mt-12 max-w-md rounded-2xl border border-gray-200 bg-white p-6 text-left shadow-sm">
+                <div class="flex items-start gap-4">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                        💡
+                    </div>
+                    <div>
+                        <h2 class="font-semibold">O que aconteceu?</h2>
+                        <p class="mt-1 text-sm leading-6 text-gray-600"> O servidor encontrou um problema inesperado. Tente novamente em alguns instantes. Se o problema continuar, volte para a página inicial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
