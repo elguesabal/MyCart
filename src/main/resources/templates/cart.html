@@ -21,7 +21,7 @@
 	<script src="/js/item/delete.js" defer></script>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-900">
-	<div th:replace="~{/fragments/header :: header}"></div>
+	<div th:replace="~{fragments/header :: header}"></div>
 	<main>
 		<section class="flex flex-1 flex-col items-center gap-5 p-[5vw] md:px-[10vw]">
 			<div class="min-w-0 flex-1 w-full gap-3">
@@ -31,7 +31,7 @@
 			</div>
 			<div class="flex flex-1 justify-center w-full">
 				<div class="w-[90vw] md:w-[80vw]">
-					<div th:replace="~{/fragments/list :: list}"></div>
+					<div th:replace="~{fragments/list :: list}"></div>
 				</div>
 			</div>
 			<button id="copy-url" class="flex justify-center w-full p-[5vw] md:px-[10vw] shrink-0 cursor-pointer rounded-xl border border-green-200 bg-white px-5 py-3 text-sm font-semibold text-green-600 transition hover:bg-green-50 sm:w-auto" th:data-cart-id="${cart.id}" type="button">
@@ -42,6 +42,6 @@
 			</button>
 		</section>
 	</main>
-	<div th:replace="~{/fragments/footer :: footer}"></div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
