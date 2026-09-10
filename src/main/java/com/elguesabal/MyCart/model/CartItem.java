@@ -51,48 +51,6 @@ public class CartItem {
 
 	/**
 	 * @author VAMPETA
-	 * @brief CONSTRUCTOR DA CLASSE
-	 * @param name NOME DO ITEM
-	 * @param quantity QUANTIDADE DO ITEM
-	 * @param checked INDICADOR DE MARCACAO DO ITEM
-	*/
-	public CartItem(String name, int quantity, boolean checked) {
-		this.id = 0;
-		this.name = name;
-		this.quantity = quantity;
-		this.unit = null;
-		this.checked = checked;
-	}
-
-	/**
-	 * @author VAMPETA
-	 * @brief CONSTRUCTOR DA CLASSE
-	 * @param name NOME DO ITEM
-	 * @param unit UNIDADE DE MEDIDA DO ITEM
-	*/
-	public CartItem(String name, String unit) {
-		this.id = 0;
-		this.name = name;
-		this.quantity = 1;
-		this.unit = unit;
-		this.checked = false;
-	}
-
-	/**
-	 * @author VAMPETA
-	 * @brief CONSTRUCTOR DA CLASSE
-	 * @param name NOME DO ITEM
-	*/
-	public CartItem(String name) {
-		this.id = 0;
-		this.name = name;
-		this.quantity = 1;
-		this.unit = null;
-		this.checked = false;
-	}
-
-	/**
-	 * @author VAMPETA
 	 * @brief GETTER DE this.id
 	*/
 	public int getId() {

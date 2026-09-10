@@ -1,6 +1,9 @@
 package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 /**
  * @author VAMPETA
@@ -12,10 +15,15 @@ import java.util.UUID;
  * @param checked INDICADOR SE O ITEM ESTA MARCADO OU DESMARCADO
 */
 public class CreateItemRequest {
+	@NotNull
 	private UUID	cartId;
+	@NotBlank
 	private String	name;
+	@Positive
 	private int		quantity;
+	@NotNull
 	private String	unit;
+	@NotNull
 	private boolean	checked;
 
 	/**

@@ -37,10 +37,10 @@ public class RoutesController {
 		Cart	cart = new Cart("Minhas compras", "Compras da semana");
 
 		cart.addItem(new CartItem("Arroz", 2, "kg", true));
-		cart.addItem(new CartItem("Leite", 3, false));
+		cart.addItem(new CartItem("Leite", 3, "", false));
 		cart.addItem(new CartItem("Café", 500, "g", false));
-		cart.addItem(new CartItem("Ovos", 12, false));
-		cart.addItem(new CartItem("Chocolate", 1, true));
+		cart.addItem(new CartItem("Ovos", 12, "", false));
+		cart.addItem(new CartItem("Chocolate", 1, "", true));
 		cart.addItem(new CartItem("Açucar", 1, "kg", false));
 		cart.addItem(new CartItem("Coca-Cola", 2, "L", false));
 		cart.addItem(new CartItem("Banana", 2, "kg", false));

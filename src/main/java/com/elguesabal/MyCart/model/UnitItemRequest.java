@@ -1,6 +1,8 @@
 package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 /**
  * @author VAMPETA
@@ -10,8 +12,12 @@ import java.util.UUID;
  * @param unit NOVA UNIDADE DE MEDIDA DO ITEM
 */
 public class UnitItemRequest {
+	@NotNull
     private UUID	cartId;
+	@NotNull
+	@Positive
 	private Long	itemId;
+	@NotNull
 	private String	unit;
 
 	/**

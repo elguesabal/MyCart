@@ -1,6 +1,9 @@
 package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 /**
  * @author VAMPETA
@@ -10,8 +13,12 @@ import java.util.UUID;
  * @param name NOVO NOME DO ITEM
 */
 public class NameItemRequest {
+	@NotNull
     private UUID	cartId;
+	@NotNull
+	@Positive
 	private Long	itemId;
+	@NotBlank
 	private String	name;
 
 	/**

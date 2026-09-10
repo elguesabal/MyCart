@@ -1,6 +1,7 @@
 package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author VAMPETA
@@ -9,7 +10,9 @@ import java.util.UUID;
  * @param description NOVA DESCRICAO DO CARRINHO
 */
 public class DescriptionCartRequest {
+	@NotNull
     private UUID	id;
+	@NotNull
 	private String	description;
 
 	/**

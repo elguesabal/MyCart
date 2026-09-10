@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
 
 import com.elguesabal.MyCart.model.Cart;
 import com.elguesabal.MyCart.service.CartService;
@@ -58,7 +59,7 @@ public class CartController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O CARRINHO
 	*/
 	@PatchMapping ("/name")
-	public ResponseEntity<Void> name(@RequestBody NameCartRequest body) {
+	public ResponseEntity<Void> name(@Valid @RequestBody NameCartRequest body) {
 		boolean	update = cartService.updateName(body.getId(), body.getName());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -73,7 +74,7 @@ public class CartController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O CARRINHO
 	*/
 	@PatchMapping ("/description")
-	public ResponseEntity<Void> description(@RequestBody DescriptionCartRequest body) {
+	public ResponseEntity<Void> description(@Valid @RequestBody DescriptionCartRequest body) {
 		boolean	update = cartService.updateDescription(body.getId(), body.getDescription());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -88,7 +89,7 @@ public class CartController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O CARRINHO
 	*/
 	@DeleteMapping("/delete")
-	public ResponseEntity<Void> delete(@RequestBody DeleteCartRequest body) {
+	public ResponseEntity<Void> delete(@Valid @RequestBody DeleteCartRequest body) {
 		boolean	update = cartService.deleteCart(body.getId());
 
 		if (!update) return (ResponseEntity.notFound().build());

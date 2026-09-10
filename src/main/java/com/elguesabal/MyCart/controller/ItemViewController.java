@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.ui.Model;
+import jakarta.validation.Valid;
 
 import com.elguesabal.MyCart.service.ItemService;
 import com.elguesabal.MyCart.model.CartItem;
@@ -39,7 +40,7 @@ public class ItemViewController {
 	 */
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/create")
-	public String createItem(@RequestBody CreateItemRequest body, Model model) {
+	public String createItem(@Valid @RequestBody CreateItemRequest body, Model model) {
 		CartItem cartItem = itemService.createItem(body.getCartId(), body.getName(), body.getQuantity(), body.getUnit(), body.getChecked());
 
 		model.addAttribute("item", cartItem);

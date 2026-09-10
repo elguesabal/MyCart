@@ -1,6 +1,8 @@
 package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author VAMPETA
@@ -9,7 +11,9 @@ import java.util.UUID;
  * @param name NOVO NOME DO CARRINHO
 */
 public class NameCartRequest {
-    private UUID	id;
+	@NotNull
+	private UUID	id;
+	@NotBlank
 	private String	name;
 
 	/**

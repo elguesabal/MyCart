@@ -1,0 +1,196 @@
+# MyCart
+
+Aplicação web para criação e gerenciamento de listas de compras sem necessidade de cadastro.
+
+```text
+https://mycart-3y1c.onrender.com
+```
+
+Cada carrinho possui um ID único que pode ser utilizado para acessá-lo:
+
+```text
+https://mycart-3y1c.onrender.com/cart/{id}
+```
+
+## Tecnologias
+
+* Java
+* Spring Boot
+* Thymeleaf
+* JdbcTemplate
+* PostgreSQL / Supabase
+* Maven
+
+## API
+
+A API utiliza JSON nas requisições. Operações de atualização e exclusão retornam `204 No Content` quando executadas com sucesso e `404 Not Found` quando o recurso não existe.
+
+### Carrinhos
+
+#### Criar carrinho
+
+```http
+POST /cart/create
+```
+
+Resposta `201 Created`:
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000"
+}
+```
+
+#### Alterar nome
+
+```http
+PATCH /cart/name
+Content-Type: application/json
+```
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "Compras da semana"
+}
+```
+
+#### Alterar descrição
+
+```http
+PATCH /cart/description
+Content-Type: application/json
+```
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "description": "Compras para esta semana"
+}
+```
+
+#### Excluir carrinho
+
+```http
+DELETE /cart/delete
+Content-Type: application/json
+```
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000"
+}
+```
+
+---
+
+### Itens
+
+#### Criar item
+
+```http
+POST /item/create
+Content-Type: application/json
+```
+
+```json
+{
+  "cartId": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "Arroz",
+  "quantity": 2,
+  "unit": "kg",
+  "checked": false
+}
+```
+
+Resposta `201 Created`: fragmento HTML do item criado.
+
+#### Marcar/desmarcar item
+
+```http
+PATCH /item/checked
+Content-Type: application/json
+```
+
+```json
+{
+  "cartId": "550e8400-e29b-41d4-a716-446655440000",
+  "itemId": 1,
+  "checked": true
+}
+```
+
+#### Alterar nome
+
+```http
+PATCH /item/name
+Content-Type: application/json
+```
+
+```json
+{
+  "cartId": "550e8400-e29b-41d4-a716-446655440000",
+  "itemId": 1,
+  "name": "Arroz integral"
+}
+```
+
+#### Alterar quantidade
+
+```http
+PATCH /item/quantity
+Content-Type: application/json
+```
+
+```json
+{
+  "cartId": "550e8400-e29b-41d4-a716-446655440000",
+  "itemId": 1,
+  "quantity": 5
+}
+```
+
+#### Alterar unidade
+
+```http
+PATCH /item/unit
+Content-Type: application/json
+```
+
+```json
+{
+  "cartId": "550e8400-e29b-41d4-a716-446655440000",
+  "itemId": 1,
+  "unit": "kg"
+}
+```
+
+#### Excluir item
+
+```http
+DELETE /item/delete
+Content-Type: application/json
+```
+
+```json
+{
+  "cartId": "550e8400-e29b-41d4-a716-446655440000",
+  "itemId": 1
+}
+```
+
+## Rotas de páginas
+
+| Método | Rota         | Descrição         |
+| ------ | ------------ | ----------------- |
+| `GET`  | `/`          | Página inicial    |
+| `GET`  | `/cart/{id}` | Exibe um carrinho |
+
+## Status HTTP
+
+| Status | Uso                                         |
+| ------ | ------------------------------------------- |
+| `200`  | Página ou resposta executada com sucesso    |
+| `201`  | Recurso criado                              |
+| `204`  | Operação concluída sem conteúdo de resposta |
+| `404`  | Carrinho ou item não encontrado             |

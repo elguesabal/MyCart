@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
 
 import com.elguesabal.MyCart.service.ItemService;
 import com.elguesabal.MyCart.model.CheckedItemRequest;
@@ -41,7 +42,7 @@ public class ItemController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O ITEM
 	*/
 	@PatchMapping("/checked")
-	public ResponseEntity<Void> checked(@RequestBody CheckedItemRequest body) {
+	public ResponseEntity<Void> checked(@Valid @RequestBody CheckedItemRequest body) {
 		boolean	update = itemService.updateChecked(body.getCartId(), body.getItemId(), body.getChecked());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -56,7 +57,7 @@ public class ItemController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O ITEM
 	*/
 	@PatchMapping("/name")
-	public ResponseEntity<Void> name(@RequestBody NameItemRequest body) {
+	public ResponseEntity<Void> name(@Valid @RequestBody NameItemRequest body) {
 		boolean	update = itemService.updateName(body.getCartId(), body.getItemId(), body.getName());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -71,7 +72,7 @@ public class ItemController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O ITEM
 	*/
 	@PatchMapping("/quantity")
-	public ResponseEntity<Void> quantity(@RequestBody QuantityItemRequest body) {
+	public ResponseEntity<Void> quantity(@Valid @RequestBody QuantityItemRequest body) {
 		boolean	update = itemService.updateQuantity(body.getCartId(), body.getItemId(), body.getQuantity());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -86,7 +87,7 @@ public class ItemController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O ITEM
 	*/
 	@PatchMapping("/unit")
-	public ResponseEntity<Void> unit(@RequestBody UnitItemRequest body) {
+	public ResponseEntity<Void> unit(@Valid @RequestBody UnitItemRequest body) {
 		boolean	update = itemService.updateUnit(body.getCartId(), body.getItemId(), body.getUnit());
 
 		if (!update) return (ResponseEntity.notFound().build());
@@ -101,7 +102,7 @@ public class ItemController {
 	 * @return 404 RETORNA APENAS O STATUS SE NAO ENCONTRAR O ITEM
 	*/
 	@DeleteMapping("/delete")
-	public ResponseEntity<Void> delete(@RequestBody DeleteItemRequest body) {
+	public ResponseEntity<Void> delete(@Valid @RequestBody DeleteItemRequest body) {
 		boolean	update = itemService.deleteItem(body.getCartId(), body.getItemId());
 
 		if (!update) return (ResponseEntity.notFound().build());

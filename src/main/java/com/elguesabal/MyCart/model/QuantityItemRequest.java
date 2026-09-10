@@ -1,6 +1,9 @@
 package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 /**
  * @author VAMPETA
@@ -10,8 +13,12 @@ import java.util.UUID;
  * @param quantity NOVA QUANTIDADE DO ITEM
 */
 public class QuantityItemRequest {
+	@NotNull
     private UUID	cartId;
+	@NotNull
+	@Positive
 	private Long	itemId;
+	@PositiveOrZero
 	private int		quantity;
 
 	/**

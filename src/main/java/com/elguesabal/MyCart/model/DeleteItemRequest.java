@@ -1,6 +1,8 @@
 package com.elguesabal.MyCart.model;
 
 import java.util.UUID;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 /**
  * @author VAMPETA
@@ -9,7 +11,10 @@ import java.util.UUID;
  * @param itemId ID DO ITEM
 */
 public class DeleteItemRequest {
-	private UUID	cartId;
+	@NotNull
+    private UUID	cartId;
+	@NotNull
+	@Positive
 	private Long	itemId;
 
 	/**
