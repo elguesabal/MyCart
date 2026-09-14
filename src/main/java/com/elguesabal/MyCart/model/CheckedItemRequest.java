@@ -22,6 +22,19 @@ public class CheckedItemRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param cartId ID DO CARRINHO
+	 * @param itemId ID DO ITEM
+	 * @param checked ESTADO DE MARCADO OU DESMARCADO
+	*/
+	public CheckedItemRequest(UUID cartId, Long itemId, boolean checked) {
+		this.cartId = cartId;
+		this.itemId = itemId;
+		this.checked = checked;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.cartId
 	*/
 	public UUID getCartId() {

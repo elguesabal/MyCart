@@ -22,6 +22,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.elguesabal.MyCart.model.CartItem;
 
+/**
+ * @author VAMPETA
+ * @brief CLASE DE TESTE DA CLASSE ItemService
+*/
 @ExtendWith(MockitoExtension.class)
 public class ItemServiceTest {
 	@Mock
@@ -60,7 +64,7 @@ public class ItemServiceTest {
 	 * @brief TESTA O METODO createItem CASO jdbcTemplate.update LANCE UM ERRO
 	*/
 	@Test
-	void shouldThrowWhenDatabaseFails() {
+	void shouldThrowExceptionWhenCreatingItem() {
 		UUID				cartId = UUID.randomUUID();
 		String				name = "vampeta";
 		int					quantity = 5;
