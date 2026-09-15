@@ -23,6 +23,19 @@ public class QuantityItemRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param cartId ID DO CARRINHO
+	 * @param itemId ID DO ITEM
+ 	 * @param quantity NOVA QUANTIDADE DO ITEM
+	*/
+	public QuantityItemRequest(UUID cartId, Long itemId, int quantity) {
+		this.cartId = cartId;
+		this.itemId = itemId;
+		this.quantity = quantity;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.cartId
 	*/
 	public UUID getCartId() {

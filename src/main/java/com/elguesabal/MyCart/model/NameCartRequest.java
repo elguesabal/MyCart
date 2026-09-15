@@ -18,6 +18,17 @@ public class NameCartRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param id ID DO CARRINHO
+	 * @param name NOVO NOME DO CARRINHO
+	*/
+	public NameCartRequest(UUID id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.id
 	*/
 	public UUID getId() {

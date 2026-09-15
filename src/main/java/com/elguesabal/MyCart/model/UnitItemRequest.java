@@ -22,6 +22,19 @@ public class UnitItemRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param cartId ID DO CARRINHO
+	 * @param itemId ID DO ITEM
+	 * @param unit NOVA UNIDADE DE MEDIDA DO ITEM
+	*/
+	public UnitItemRequest(UUID cartId, Long itemId, String unit) {
+		this.cartId = cartId;
+		this.itemId = itemId;
+		this.unit = unit;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.cartId
 	*/
 	public UUID getCartId() {

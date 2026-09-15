@@ -19,6 +19,17 @@ public class DeleteItemRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param cartId ID DO CARRINHO
+	 * @param itemId ID DO ITEM
+	*/
+	public DeleteItemRequest(UUID cartId, Long itemId) {
+		this.cartId = cartId;
+		this.itemId = itemId;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.cartId
 	*/
 	public UUID getCartId() {

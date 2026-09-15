@@ -23,6 +23,19 @@ public class NameItemRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param cartId ID DO CARRINHO
+	 * @param itemId ID DO ITEM
+	 * @param name NOVO NOME DO ITEM
+	*/
+	public NameItemRequest(UUID cartId, Long itemId, String name) {
+		this.cartId = cartId;
+		this.itemId = itemId;
+		this.name = name;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.cartId
 	*/
 	public UUID getCartId() {

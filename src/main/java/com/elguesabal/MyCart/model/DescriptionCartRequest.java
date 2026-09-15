@@ -17,6 +17,17 @@ public class DescriptionCartRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param id ID DO CARRINHO
+	 * @param description NOVA DESCRICAO DO CARRINHO
+	*/
+	public DescriptionCartRequest(UUID id, String description) {
+		this.id = id;
+		this.description = description;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.id
 	*/
 	public UUID getId() {

@@ -14,6 +14,15 @@ public class DeleteCartRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param id ID DO CARRINHO
+	*/
+	public DeleteCartRequest(UUID id) {
+		this.id = id;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.id
 	*/
 	public UUID getId() {
