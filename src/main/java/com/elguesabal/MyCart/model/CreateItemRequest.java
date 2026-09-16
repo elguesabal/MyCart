@@ -28,6 +28,23 @@ public class CreateItemRequest {
 
 	/**
 	 * @author VAMPETA
+	 * @brief CONSTRUCTOR DA CLASSE
+	 * @param cartId ID DO CARRINHO
+	 * @param name NOME DO NOVO ITEM
+	 * @param quantity QUANTIDADE DO NOVO ITEM
+	 * @param unit UNIDADE DE MEDIDA DO NOVO ITEM
+	 * @param checked INDICADOR SE O ITEM ESTA MARCADO OU DESMARCADO
+	*/
+	public CreateItemRequest(UUID cartId, String name, int quantity, String unit, boolean checked) {
+		this.cartId = cartId;
+		this.name = name;
+		this.quantity = quantity;
+		this.unit = unit;
+		this.checked = checked;
+	}
+
+	/**
+	 * @author VAMPETA
 	 * @brief GETTER DE this.cartId
 	*/
 	public UUID getCartId() {

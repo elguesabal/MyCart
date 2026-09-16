@@ -32,8 +32,8 @@ public class RoutesController {
 	 * @brief PAGINA PRINCIPAL DO SITE
 	 * @param model MODELO UTILIZADO PARA RENDERIZACAO DO FRAGMENTO THYMELEAF
 	*/
-    @GetMapping("/")
-    public String index(Model model) {
+	@GetMapping("/")
+	public String index(Model model) {
 		Cart	cart = new Cart("Minhas compras", "Compras da semana");
 
 		cart.addItem(new CartItem("Arroz", 2, "kg", true));
