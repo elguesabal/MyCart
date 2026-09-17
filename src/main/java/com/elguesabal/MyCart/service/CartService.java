@@ -57,7 +57,7 @@ public class CartService {
 	 * @param id ID DO CARRINHO
 	 * @return RETORNA AS INFORMACOES DO CARRINHO
 	*/
-	public Cart findCart(String id) {
+	public Cart findCart(String id) {		// DEVERIA RECEBER UMA STRING OU UM UUID?
 		String	sql = """
 				SELECT id, name, description
 				FROM carts
@@ -81,7 +81,7 @@ public class CartService {
 	 * @param id ID DO CARRINHO
 	 * @return RETORNA UMA LISTA DE ITEMS
 	*/
-	public List<CartItem> findItems(String id) {
+	public List<CartItem> findItems(String id) {		// DEVERIA RECEBER UMA STRING OU UM UUID?
 		String	sql = """
 				SELECT id, name, quantity, unit, checked
 				FROM cart_items
