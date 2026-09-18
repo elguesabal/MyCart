@@ -87,7 +87,7 @@ public class CartServiceTest {
 			any(RowMapper.class),
 			eq(cartId)
 		)).thenReturn(cart);
-		Cart	res = cartService.findCart(cartId.toString());
+		Cart	res = cartService.findCart(cartId);
 		assertEquals(cart, res);
 	}
 
@@ -105,7 +105,7 @@ public class CartServiceTest {
 			any(RowMapper.class),
 			eq(cartId)
 		)).thenThrow(exception);
-		assertThrows(DataAccessException.class, () -> cartService.findCart(cartId.toString()));
+		assertThrows(DataAccessException.class, () -> cartService.findCart(cartId));
 	}
 
 	/**

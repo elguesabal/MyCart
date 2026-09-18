@@ -73,8 +73,8 @@ public class RoutesControllerTest {
 			new CartItem(2, "Feijão", 3, "kg", false)
 		);
 
-		when(cartService.findCart(cartId.toString())).thenReturn(cart);
-		when(cartService.findItems(cartId.toString())).thenReturn(items);
+		when(cartService.findCart(cartId)).thenReturn(cart);
+		when(cartService.findItems(cartId)).thenReturn(items);
 		String	res = routesController.cart(cartId.toString(), model);
 		assertEquals("cart", res);
 		assertEquals(items, cart.getItems());
@@ -88,7 +88,7 @@ public class RoutesControllerTest {
 	void shouldThrowExceptionWhenFindCartFails() {
 		UUID	cartId = UUID.randomUUID();
 
-		when(cartService.findCart(cartId.toString())).thenThrow(new RuntimeException());
+		when(cartService.findCart(cartId)).thenThrow(new RuntimeException());
 		assertThrows(RuntimeException.class, () -> routesController.cart(cartId.toString(), model));
 	}
 
@@ -100,7 +100,7 @@ public class RoutesControllerTest {
 	void shouldThrowExceptionWhenFindItemsFails() {
 		UUID	cartId = UUID.randomUUID();
 
-		when(cartService.findItems(cartId.toString())).thenThrow(new RuntimeException());
+		when(cartService.findItems(cartId)).thenThrow(new RuntimeException());
 		assertThrows(RuntimeException.class, () -> routesController.cart(cartId.toString(), model));
 	}
 }

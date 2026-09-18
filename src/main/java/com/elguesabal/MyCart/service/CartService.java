@@ -57,7 +57,7 @@ public class CartService {
 	 * @param id ID DO CARRINHO
 	 * @return RETORNA AS INFORMACOES DO CARRINHO
 	*/
-	public Cart findCart(String id) {		// DEVERIA RECEBER UMA STRING OU UM UUID?
+	public Cart findCart(UUID id) {
 		String	sql = """
 				SELECT id, name, description
 				FROM carts
@@ -71,7 +71,7 @@ public class CartService {
 				res.getString("name"),
 				res.getString("description")
 			),
-			UUID.fromString(id)
+			id
 		));
 	}
 
@@ -81,7 +81,7 @@ public class CartService {
 	 * @param id ID DO CARRINHO
 	 * @return RETORNA UMA LISTA DE ITEMS
 	*/
-	public List<CartItem> findItems(String id) {		// DEVERIA RECEBER UMA STRING OU UM UUID?
+	public List<CartItem> findItems(UUID id) {
 		String	sql = """
 				SELECT id, name, quantity, unit, checked
 				FROM cart_items
@@ -97,7 +97,7 @@ public class CartService {
                 res.getString("unit"),
                 res.getBoolean("checked")
 			),
-			UUID.fromString(id)
+			id
 		));
 	}
 

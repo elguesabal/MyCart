@@ -1,5 +1,7 @@
 package com.elguesabal.MyCart.controller;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,9 +58,9 @@ public class RoutesController {
 	*/
 	@GetMapping("/cart/{id}")
 	public String cart(@PathVariable("id") String id, Model model) {
-		Cart	cart = cartService.findCart(id);
+		Cart	cart = cartService.findCart(UUID.fromString(id));
 
-		cart.setItems(cartService.findItems(id));
+		cart.setItems(cartService.findItems(UUID.fromString(id)));
 		model.addAttribute("cart", cart);
 		return ("cart");
 	}
