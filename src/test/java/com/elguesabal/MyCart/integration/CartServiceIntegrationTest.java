@@ -47,7 +47,9 @@ public class CartServiceIntegrationTest {
 	*/
 	@AfterEach
 	void deleteCart() {
-		this.cartService.deleteCart(this.cart.getId());
+		if (this.cart != null) {
+			this.cartService.deleteCart(this.cart.getId());
+		}
 	}
 
 	/**
@@ -64,100 +66,100 @@ public class CartServiceIntegrationTest {
 		assertTrue(this.cart.getItems().isEmpty());
 	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief VERIFICA SE O CARRINHO FOI ENCONTRADO CORRETAMENTE COM findCart
-	// */
-	// @Test
-	// void shouldFindCart() {
-		// Cart	cart = this.cartService.findCart(this.cart.getId());
+	/**
+	 * @author VAMPETA
+	 * @brief VERIFICA SE O CARRINHO FOI ENCONTRADO CORRETAMENTE COM findCart
+	*/
+	@Test
+	void shouldFindCart() {
+		Cart	cart = this.cartService.findCart(this.cart.getId());
 
-		// assertNotNull(cart);
-		// assertEquals(this.cart.getId(), cart.getId());
-		// assertEquals("Minha lista", cart.getName());
-		// assertEquals(null, cart.getDescription());
-		// assertNotNull(cart.getItems());
-		// assertTrue(cart.getItems().isEmpty());
-	// }
+		assertNotNull(cart);
+		assertEquals(this.cart.getId(), cart.getId());
+		assertEquals("Minha lista", cart.getName());
+		assertEquals(null, cart.getDescription());
+		assertNotNull(cart.getItems());
+		assertTrue(cart.getItems().isEmpty());
+	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief TESTA SE findCart LANCA UM ERRO QUANDO O ID NAO EXISTE
-	// */
-	// @Test
-	// void shouldThrowExceptionWhenFindCartWithInvalidId() {
-	// 	assertThrows(EmptyResultDataAccessException.class, () -> this.cartService.findCart(UUID.randomUUID()));
-	// }
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE findCart LANCA UM ERRO QUANDO O ID NAO EXISTE
+	*/
+	@Test
+	void shouldThrowExceptionWhenFindCartWithInvalidId() {
+		assertThrows(EmptyResultDataAccessException.class, () -> this.cartService.findCart(UUID.randomUUID()));
+	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief VERIFICA SE OS ITEMS SAO ENCONTRADO E RETORNADOS CORRETAMENTE DE findeItems
-	// */
-	// @Test
-	// void shouldReturnEmptyListWhenCartHasNoItems() {
-	// 	List<CartItem>	items = this.cartService.findItems(this.cart.getId());
+	/**
+	 * @author VAMPETA
+	 * @brief VERIFICA SE OS ITEMS SAO ENCONTRADO E RETORNADOS CORRETAMENTE DE findeItems
+	*/
+	@Test
+	void shouldReturnEmptyListWhenCartHasNoItems() {
+		List<CartItem>	items = this.cartService.findItems(this.cart.getId());
 
-	// 	assertNotNull(items);
-	// 	assertTrue(items.isEmpty());
-	// }
+		assertNotNull(items);
+		assertTrue(items.isEmpty());
+	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief TESTA SE findeItems RETORNA UMA LISTA VAZIA QUANDO NAO ENCONTRA UM CARRINHO PELO ID
-	// */
-	// @Test
-	// void shouldReturnEmptyListWhenCartDoesNotExist() {
-	// 	List<CartItem>	items = this.cartService.findItems(UUID.randomUUID());
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE findeItems RETORNA UMA LISTA VAZIA QUANDO NAO ENCONTRA UM CARRINHO PELO ID
+	*/
+	@Test
+	void shouldReturnEmptyListWhenCartDoesNotExist() {
+		List<CartItem>	items = this.cartService.findItems(UUID.randomUUID());
 
-	//     assertNotNull(items);
-	//     assertTrue(items.isEmpty());
-	// }
+	    assertNotNull(items);
+	    assertTrue(items.isEmpty());
+	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief TESTA SE O NAME DE CART FOI MODIFICADO COM SUCESSO COM updateName
-	// */
-	// @Test
-	// void shouldUpdateCartName() {
-	// 	boolean	res = this.cartService.updateName(this.cart.getId(), "vampeta");
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE O NAME DE CART FOI MODIFICADO COM SUCESSO COM updateName
+	*/
+	@Test
+	void shouldUpdateCartName() {
+		boolean	res = this.cartService.updateName(this.cart.getId(), "vampeta");
 
-	// 	assertTrue(res);
-	// 	Cart	cart = this.cartService.findCart(this.cart.getId());
-	// 	assertEquals("vampeta", cart.getName());
-	// }
+		assertTrue(res);
+		Cart	cart = this.cartService.findCart(this.cart.getId());
+		assertEquals("vampeta", cart.getName());
+	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief TESTA SE updateName RETORNA FALSE CASO O ID NAO EXISTA
-	// */
-	// @Test
-	// void shouldReturnFalseWhenUpdatingCartNameWithInvalidId() {
-	// 	boolean	res = this.cartService.updateName(UUID.randomUUID(), "vampeta");
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE updateName RETORNA FALSE CASO O ID NAO EXISTA
+	*/
+	@Test
+	void shouldReturnFalseWhenUpdatingCartNameWithInvalidId() {
+		boolean	res = this.cartService.updateName(UUID.randomUUID(), "vampeta");
 
-	// 	assertFalse(res);
-	// }
+		assertFalse(res);
+	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief TESTA SE O DESCRIPTION DE CART FOI MODIFICADO COM SUCESSO COM updateDescription
-	// */
-	// @Test
-	// void shouldUpdateCartDescription() {
-	// 	boolean	res = this.cartService.updateDescription(this.cart.getId(), "vampeta");
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE O DESCRIPTION DE CART FOI MODIFICADO COM SUCESSO COM updateDescription
+	*/
+	@Test
+	void shouldUpdateCartDescription() {
+		boolean	res = this.cartService.updateDescription(this.cart.getId(), "vampeta");
 
-	// 	assertTrue(res);
-	// 	Cart	cart = this.cartService.findCart(this.cart.getId());
-	// 	assertEquals("vampeta", cart.getDescription());
-	// }
+		assertTrue(res);
+		Cart	cart = this.cartService.findCart(this.cart.getId());
+		assertEquals("vampeta", cart.getDescription());
+	}
 
-	// /**
-	//  * @author VAMPETA
-	//  * @brief TESTA SE updateDescription RETORNA FALSE CASO O ID NAO EXISTA
-	// */
-	// @Test
-	// void shouldReturnFalseWhenUpdatingCartDescriptionWithInvalidId() {
-	// 	boolean	res = this.cartService.updateDescription(UUID.randomUUID(), "vampeta");
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE updateDescription RETORNA FALSE CASO O ID NAO EXISTA
+	*/
+	@Test
+	void shouldReturnFalseWhenUpdatingCartDescriptionWithInvalidId() {
+		boolean	res = this.cartService.updateDescription(UUID.randomUUID(), "vampeta");
 
-	// 	assertFalse(res);
-	// }
+		assertFalse(res);
+	}
 }
