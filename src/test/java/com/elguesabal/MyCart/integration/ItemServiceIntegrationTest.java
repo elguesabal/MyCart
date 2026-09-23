@@ -77,4 +77,56 @@ public class ItemServiceIntegrationTest {
 		assertEquals("kg", this.cartItem.getUnit());
 		assertEquals(false, this.cartItem.getChecked());
 	}
+
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE updateChecked ATUALIZOU O BANCO DE DADOS CORRETAMENTE
+	*/
+	@Test
+	void shouldUpdateChecked() {
+		boolean	res = this.itemService.updateChecked(this.cart.getId(), (long) this.cartItem.getId(), true);
+
+		assertTrue(res);
+		CartItem	cartItem = this.cartService.findItems(this.cart.getId()).get(0);
+		assertEquals(true, cartItem.getChecked());
+	}
+
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE updateName ATUALIZOU O BANCO DE DADOS CORRETAMENTE
+	*/
+	@Test
+	void shouldUpdateName() {
+		boolean	res = this.itemService.updateName(this.cart.getId(), (long) this.cartItem.getId(), "VAMPETA");
+
+		assertTrue(res);
+		CartItem	cartItem = this.cartService.findItems(this.cart.getId()).get(0);
+		assertEquals("VAMPETA", cartItem.getName());
+	}
+
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE updateQuantity ATUALIZOU O BANCO DE DADOS CORRETAMENTE
+	*/
+	@Test
+	void shouldUpdateQuantity() {
+		boolean	res = this.itemService.updateQuantity(this.cart.getId(), (long) this.cartItem.getId(), 4242);
+
+		assertTrue(res);
+		CartItem	cartItem = this.cartService.findItems(this.cart.getId()).get(0);
+		assertEquals(4242, cartItem.getQuantity());
+	}
+
+	/**
+	 * @author VAMPETA
+	 * @brief TESTA SE updateUnit ATUALIZOU O BANCO DE DADOS CORRETAMENTE
+	*/
+	@Test
+	void shouldUpdateUnit() {
+		boolean	res = this.itemService.updateUnit(this.cart.getId(), (long) this.cartItem.getId(), "42");
+
+		assertTrue(res);
+		CartItem	cartItem = this.cartService.findItems(this.cart.getId()).get(0);
+		assertEquals("42", cartItem.getUnit());
+	}
 }
